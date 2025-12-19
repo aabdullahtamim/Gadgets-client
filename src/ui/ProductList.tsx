@@ -11,7 +11,7 @@ const ProductList = () => {
                     <Title text="Top Selling Products" />
                     <Link to={"/product"}>View All Products</Link>
                 </div>
-                <div className="w-full h-[1px] bg-gray-200 mt-2" />
+                <div className="w-full h-px bg-gray-200 mt-2" />
             </div>
             {/* Pagination */}
             <Pagination />

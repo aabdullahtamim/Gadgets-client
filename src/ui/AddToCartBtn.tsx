@@ -91,8 +91,10 @@ const AddToCartBtn = ({
             {existingProduct ? (
                 <div className="flex self-center items-center justify-center gap-2">
                     <button
+                        type="button"
+                        aria-label="Decrease quantity"
                         onClick={handleDeleteProduct}
-                        className="bg-[#f7f7f7] text-black p-2 border-[1px] border-gray-200 hover:border-skyText rounded-full text-sm hover:bg-white duration-200 cursor-pointer"
+                        className="bg-[#f7f7f7] text-black p-2 border border-gray-200 hover:border-skyText rounded-full text-sm hover:bg-white duration-200 cursor-pointer"
                     >
                         <FaMinus />
                     </button>
@@ -100,8 +102,10 @@ const AddToCartBtn = ({
                         {existingProduct?.quantity}
                     </p>
                     <button
+                        type="button"
+                        aria-label="Decrease quantity"
                         onClick={handleAddToCart}
-                        className="bg-[#f7f7f7] text-black p-2 border-[1px] border-gray-200 hover:border-skyText rounded-full text-sm hover:bg-white duration-200 cursor-pointer"
+                        className="bg-[#f7f7f7] text-black p-2 border border-gray-200 hover:border-skyText rounded-full text-sm hover:bg-white duration-200 cursor-pointer"
                     >
                         <FaPlus />
                     </button>

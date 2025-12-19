@@ -22,7 +22,7 @@ const UserInfo = ({ currentUser }: UserTypes) => {
                     <div className="text-start flex-1">
                         <h2 className="text-xl font-bold tracking-tight sm:text-4xl">
                             Welcome back, dear{" "}
-                            <span className="underline underline-offset-2 decoration-[1px] font-medium">
+                            <span className="underline underline-offset-2 decoration-1 font-medium">
                                 {currentUser?.firstName} {currentUser?.lastName}
                             </span>
                         </h2>
@@ -41,7 +41,7 @@ const UserInfo = ({ currentUser }: UserTypes) => {
                         onClick={() =>
                             toast.error("Edit profile option available to pro version!")
                         }
-                        className="rounded-md bg-white px-8 py-2.5 text-sm font-semibold  text-gray-900 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                        className="rounded-md bg-white px-8 py-2.5 text-sm font-semibold  text-gray-900 hover:bg-gray-100 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-red-600"
                     >
                         Edit profile
                     </button>
@@ -49,20 +49,20 @@ const UserInfo = ({ currentUser }: UserTypes) => {
                         onClick={() =>
                             toast.error("Add Address option available to pro version!")
                         }
-                        className="rounded-md bg-white px-8 py-2.5 text-sm font-semibold  text-gray-900 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                        className="rounded-md bg-white px-8 py-2.5 text-sm font-semibold  text-gray-900 hover:bg-gray-100 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-red-600"
                     >
                         Add Address
                     </button>
                     <button
                         onClick={() => auth.signOut()}
-                        className="rounded-md bg-white px-8 py-2.5 text-sm font-semibold  text-gray-900 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                        className="rounded-md bg-white px-8 py-2.5 text-sm font-semibold  text-gray-900 hover:bg-gray-100 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-red-600"
                     >
                         Logout
                     </button>
                 </div>
                 <svg
                     viewBox="0 0 1024 1024"
-                    className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+                    className="absolute left-1/2 top-1/2 -z-10 h-256 w-5xl -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]"
                     aria-hidden="true"
                 >
                     <circle

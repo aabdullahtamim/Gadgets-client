@@ -28,7 +28,7 @@ const CategoryFilters = ({ id }: { id: string | undefined }) => {
         <div className="hidden md:inline-flex flex-col gap-6">
             <p className="text-3xl font-bold">Filters</p>
             <div>
-                <p className="text-sm uppercase font-semibold underline underline-offset-2 decoration-[1px] mb-2">
+                <p className="text-sm uppercase font-semibold underline underline-offset-2 decoration-1 mb-2">
                     Select Categories
                 </p>
                 <div className="flex flex-col gap-y-2 min-w-40">
@@ -47,7 +47,7 @@ const CategoryFilters = ({ id }: { id: string | undefined }) => {
                             <Link
                                 to={`/category/${item?._base}`}
                                 key={item?._id}
-                                className={`text-base font-medium text-start underline underline-offset-2 decoration-[1px] decoration-transparent hover:decoration-gray-950 hover:text-black duration-200 ${item?._base === id
+                                className={`text-base font-medium text-start underline underline-offset-2 decoration-1 decoration-transparent hover:decoration-gray-950 hover:text-black duration-200 ${item?._base === id
                                     ? "text-greenText decoration-greenText"
                                     : "text-lightText"
                                     }`}

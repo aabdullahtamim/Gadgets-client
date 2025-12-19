@@ -48,7 +48,7 @@ const BannerCategories = () => {
             infinite={true}
             autoPlay={true}
             transitionDuration={1000}
-            className="flex flex-row p-4 max-w-screen-xl mx-auto lg:px-0 relative"
+            className="flex flex-row p-4 max-w-7xl mx-auto lg:px-0 relative"
             customRightArrow={<CustomRightArrow />}
             customLeftArrow={<CustomLeftArrow />}
         >

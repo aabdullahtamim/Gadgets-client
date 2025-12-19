@@ -184,7 +184,7 @@ const Registration = () => {
                         Already have an Account{" "}
                         <button
                             onClick={() => setLogin(true)}
-                            className="text-gray-200 font-semibold underline underline-offset-2 decoration-[1px] hover:text-white duration-200"
+                            className="text-gray-200 font-semibold underline underline-offset-2 decoration-1 hover:text-white duration-200"
                         >
                             Login
                         </button>

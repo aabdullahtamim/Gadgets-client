@@ -47,7 +47,7 @@ const NotFound = () => {
                     <div className="text-center">
                         <p className="text-4xl font-bold leading-8 text-skyText">404</p>
                         <h1 className="mt-2 text-3xl font-bold tracking-tight text-darkText">
-                            <span className="text-redText underline underline-offset-2 decoration-[1px] capitalize">
+                            <span className="text-redText underline underline-offset-2 decoration-1 capitalize">
                                 {path}
                             </span>{" "}
                             does not exist

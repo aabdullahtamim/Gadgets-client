@@ -26,7 +26,7 @@ const DiscountedBanner = () => {
         <Container>
             <div>
                 <Title text="Popular Search" />
-                <div className="w-full h-[1px] bg-gray-200 mt-3" />
+                <div className="w-full h-px bg-gray-200 mt-3" />
             </div>
             <div className="my-7 flex items-center flex-wrap gap-4">
                 {popularSearchItems?.map(({ title, link }) => (

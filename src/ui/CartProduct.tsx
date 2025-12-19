@@ -48,6 +48,8 @@ const CartProduct = ({ product }: { product: ProductProps }) => {
                     <div className="mt-4 sm:mt-0 sm:pr-9">
                         <div className="absolute right-0 top-0">
                             <button
+                                type="button"
+                                aria-label="Decrease quantity"
                                 onClick={handleRemoveProduct}
                                 className="-m2 inline-flex p-2 text-gray-600 hover:text-red-600"
                             >

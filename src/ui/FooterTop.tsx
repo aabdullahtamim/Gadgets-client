@@ -40,7 +40,7 @@ const FooterTop = () => {
                             key={item?.name}
                             className="text-center sm:flex sm:text-left lg:block lg:text-center"
                         >
-                            <div className=" sm:flex-shrink-0">
+                            <div className=" sm:shrink-0">
                                 <div className="flex-root">
                                     <span className="mx-auto inline-block">
                                         {item?.icon}
