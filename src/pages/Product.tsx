@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { config } from "../../config";
 import { getData } from "../lib";
@@ -61,7 +61,7 @@ const Product = () => {
                 <Loading />
             ) : (
                 <Container>
-                    {!!id && productData && _.isEmpty(allProducts) ? (
+                    {!id && productData && isEmpty(allProducts) ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div className="flex flex-start">
                                 <div>

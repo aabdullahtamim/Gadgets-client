@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "./Container";
 import { config } from "../../config";
 import { getData } from "../lib";
@@ -31,10 +31,10 @@ const Categories = () => {
                         className="font-medium relative group overflow-hidden"
                     >
                         View All Categories{" "}
-                        <span className="absolute bottom-0 left-0 w-full block h-[1px] bg-gray-600 -translate-x-[100%] group-hover:translate-x-0 duration-300" />
+                        <span className="absolute bottom-0 left-0 w-full block h-px bg-gray-600 -translate-x-full group-hover:translate-x-0 duration-300" />
                     </Link>
                 </div>
-                <div className="w-full h-[1px] bg-gray-200 mt-3" />
+                <div className="w-full h-1px bg-gray-200 mt-3" />
             </div>
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-7">
                 {categories.map((item: CategoryProps) => (

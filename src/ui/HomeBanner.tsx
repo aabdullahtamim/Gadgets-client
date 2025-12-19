@@ -1,4 +1,4 @@
-import { homeBanner } from "../assets";
+
 import { Stock } from "../assets";
 import Container from "./Container";
 import LinkButton from "./LinkButton";
