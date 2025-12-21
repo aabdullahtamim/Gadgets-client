@@ -18,17 +18,14 @@ interface UserType {
 }
 
 interface StoreType {
-    // user
     currentUser: UserType | null;
     isLoading: boolean;
     getUserInfo: (uid: any) => Promise<void>;
-    // cart
     cartProduct: CartProduct[];
     addToCart: (product: ProductProps) => Promise<void>;
     decreaseQuantity: (productId: number) => void;
     removeFromCart: (productId: number) => void;
     resetCart: () => void;
-    // // favorite
     favoriteProduct: CartProduct[];
     addToFavorite: (product: ProductProps) => Promise<void>;
     removeFromFavorite: (productId: number) => void;
@@ -47,6 +44,7 @@ const customStorage = {
         localStorage.removeItem(name);
     },
 };
+
 export const store = create<StoreType>()(
     persist(
         (set) => ({
@@ -56,47 +54,51 @@ export const store = create<StoreType>()(
             favoriteProduct: [],
 
             getUserInfo: async (uid: any) => {
-                if (!uid) return set({ currentUser: null, isLoading: false });
-
-                const docRef = doc(db, "users", uid);
-                const docSnap = await getDoc(docRef);
+                if (!uid) {
+                    set({ currentUser: null, isLoading: false });
+                    return; // সরাসরি রিটার্ন করে দেওয়া হলো
+                }
 
                 try {
+                    const docRef = doc(db, "users", uid);
+                    const docSnap = await getDoc(docRef);
+
                     if (docSnap.exists()) {
                         set({ currentUser: docSnap.data() as UserType, isLoading: false });
+                    } else {
+                        set({ currentUser: null, isLoading: false });
                     }
                 } catch (error) {
                     console.log("getUserInfo error", error);
                     set({ currentUser: null, isLoading: false });
                 }
             },
-            addToCart: (product: ProductProps) => {
-                return new Promise<void>((resolve) => {
-                    set((state: StoreType) => {
-                        const existingProduct = state.cartProduct.find(
-                            (p) => p._id === product._id
-                        );
 
-                        if (existingProduct) {
-                            return {
-                                cartProduct: state.cartProduct.map((p) =>
-                                    p._id === product._id
-                                        ? { ...p, quantity: (p.quantity || 0) + 1 }
-                                        : p
-                                ),
-                            };
-                        } else {
-                            return {
-                                cartProduct: [
-                                    ...state.cartProduct,
-                                    { ...product, quantity: 1 },
-                                ],
-                            };
-                        }
-                    });
-                    resolve();
+            addToCart: async (product: ProductProps) => {
+                set((state: StoreType) => {
+                    const existingProduct = state.cartProduct.find(
+                        (p) => p._id === product._id
+                    );
+
+                    if (existingProduct) {
+                        return {
+                            cartProduct: state.cartProduct.map((p) =>
+                                p._id === product._id
+                                    ? { ...p, quantity: (p.quantity || 0) + 1 }
+                                    : p
+                            ),
+                        };
+                    } else {
+                        return {
+                            cartProduct: [
+                                ...state.cartProduct,
+                                { ...product, quantity: 1 },
+                            ],
+                        };
+                    }
                 });
             },
+
             decreaseQuantity: (productId: number) => {
                 set((state: StoreType) => {
                     const existingProduct = state.cartProduct.find(
@@ -111,11 +113,11 @@ export const store = create<StoreType>()(
                                     : p
                             ),
                         };
-                    } else {
-                        return state;
                     }
+                    return state;
                 });
             },
+
             removeFromCart: (productId: number) => {
                 set((state: StoreType) => ({
                     cartProduct: state.cartProduct.filter(
@@ -123,24 +125,23 @@ export const store = create<StoreType>()(
                     ),
                 }));
             },
+
             resetCart: () => {
                 set({ cartProduct: [] });
             },
-            addToFavorite: (product: ProductProps) => {
-                return new Promise<void>((resolve) => {
-                    set((state: StoreType) => {
-                        const isFavorite = state.favoriteProduct.some(
-                            (item) => item._id === product._id
-                        );
-                        return {
-                            favoriteProduct: isFavorite
-                                ? state.favoriteProduct.filter(
-                                    (item) => item._id !== product._id
-                                )
-                                : [...state.favoriteProduct, { ...product }],
-                        };
-                    });
-                    resolve();
+
+            addToFavorite: async (product: ProductProps) => {
+                set((state: StoreType) => {
+                    const isFavorite = state.favoriteProduct.some(
+                        (item) => item._id === product._id
+                    );
+                    return {
+                        favoriteProduct: isFavorite
+                            ? state.favoriteProduct.filter(
+                                (item) => item._id !== product._id
+                            )
+                            : [...state.favoriteProduct, { ...product } as CartProduct],
+                    };
                 });
             },
 
@@ -151,6 +152,7 @@ export const store = create<StoreType>()(
                     ),
                 }));
             },
+
             resetFavorite: () => {
                 set({ favoriteProduct: [] });
             },

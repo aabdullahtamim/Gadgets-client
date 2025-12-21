@@ -9,7 +9,7 @@ import CheckoutBtn from "../ui/CheckoutBtn";
 
 const Cart = () => {
     const [totalAmt, setTotalAmt] = useState({ regular: 0, discounted: 0 });
-    const { cartProduct, currentUser } = store();
+    const { cartProduct } = store();
 
     const shippingAmt = 25;
     const taxAmt = 15;
@@ -17,14 +17,15 @@ const Cart = () => {
     useEffect(() => {
         const totals = cartProduct.reduce(
             (sum, product) => {
-                sum.regular += product?.regularPrice * product?.quantity;
-                sum.discounted += product?.discountedPrice * product?.quantity;
+                sum.regular += (product?.regularPrice || 0) * (product?.quantity || 0);
+                sum.discounted += (product?.discountedPrice || 0) * (product?.quantity || 0);
                 return sum;
             },
             { regular: 0, discounted: 0 }
         );
         setTotalAmt(totals);
     }, [cartProduct]);
+
     return (
         <Container>
             {cartProduct.length > 0 ? (
@@ -55,7 +56,6 @@ const Cart = () => {
                                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                                     <dt className="flex items-center text-sm text-gray-600">
                                         <span>Shipping estimate</span>
-
                                         <FaQuestionCircle
                                             className="h-5 w-5 text-gray-400 ml-2"
                                             aria-hidden="true"
@@ -68,7 +68,6 @@ const Cart = () => {
                                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                                     <dt className="flex text-sm text-gray-600">
                                         <span>Tax estimate</span>
-
                                         <FaQuestionCircle
                                             className="h-5 w-5 text-gray-400 ml-2"
                                             aria-hidden="true"
@@ -109,10 +108,7 @@ const Cart = () => {
                         Shopping Cart
                     </h1>
                     <p className="text-lg max-w-[600px] text-center text-gray-600 tracking-wide leading-6">
-                        Your cart is empty. Lorem ipsum, dolor sit amet consectetur
-                        adipisicing elit. Repellendus libero ab nulla iure quibusdam
-                        obcaecati debitis minima explicabo quidem tenetur ad, voluptate
-                        iusto ratione natus. Maxime molestiae doloremque eaque nesciunt!
+                        Your cart is empty. Please add some items to your cart.
                     </p>
                     <Link
                         to={"/product"}

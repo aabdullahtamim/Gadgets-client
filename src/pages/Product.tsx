@@ -61,10 +61,11 @@ const Product = () => {
                 <Loading />
             ) : (
                 <Container>
-                    {!id && productData && isEmpty(allProducts) ? (
+                    {/* কন্ডিশন পরিবর্তন করা হয়েছে: যদি id থাকে এবং productData লোড হয় */}
+                    {id && productData ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                            <div className="flex flex-start">
-                                <div>
+                            <div className="flex flex-start gap-4"> {/* gap যোগ করা হয়েছে */}
+                                <div className="flex flex-col gap-2"> {/* থাম্বনেইল এর জন্য */}
                                     {productData?.images?.map((item, index) => (
                                         <img
                                             src={item}
@@ -77,8 +78,8 @@ const Product = () => {
                                         />
                                     ))}
                                 </div>
-                                <div>
-                                    <img src={imgUrl} alt="mainImage" />
+                                <div className="flex-1">
+                                    <img src={imgUrl} alt="mainImage" className="w-full object-contain" />
                                 </div>
                             </div>
                             <div className="flex flex-col gap-4">
@@ -112,8 +113,8 @@ const Product = () => {
                                     <span className="text-base font-semibold text-green-500">
                                         <FormattedPrice
                                             amount={
-                                                productData?.regularPrice! -
-                                                productData?.discountedPrice!
+                                                (productData?.regularPrice || 0) -
+                                                (productData?.discountedPrice || 0)
                                             }
                                         />
                                     </span>{" "}
@@ -131,7 +132,7 @@ const Product = () => {
                                             </span>
                                         </p>
                                     )}
-                                    <div className="flex items-center gap-x-3">
+                                    <div className="flex items-center gap-x-3 mt-2">
                                         {productData?.colors.map((item) => (
                                             <div
                                                 key={item}
@@ -141,7 +142,7 @@ const Product = () => {
                                                     }`}
                                             >
                                                 <div
-                                                    className="w-10 h-10 rounded-full cursor-pointer"
+                                                    className="w-10 h-10 rounded-full cursor-pointer border border-gray-200"
                                                     style={{ backgroundColor: item }}
                                                     onClick={() => setColor(item)}
                                                 />
@@ -183,9 +184,9 @@ const Product = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="flex items-start gap-10">
+                        <div className="flex flex-col md:flex-row items-start gap-10">
                             <CategoryFilters id={id} />
-                            <div>
+                            <div className="flex-1">
                                 <p className="text-4xl font-semibold mb-5 text-center">
                                     Products Collection
                                 </p>
